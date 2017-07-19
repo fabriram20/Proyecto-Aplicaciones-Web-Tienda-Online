@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/18/2017 21:58:17
+-- Date Created: 07/18/2017 23:45:42
 -- Generated from EDMX file: D:\POLITECNICA\SEPTIMO SEMESTRE\PROGRAMACION WEB\Proyecto-Aplicaciones-Web-Tienda-Online\ProyectoWeb\ProyectoWeb\Models\ModelStoreV1.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,32 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CategoriaProducto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_CategoriaProducto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CarritoProducto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProductoSet] DROP CONSTRAINT [FK_CarritoProducto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CarritoUsuario]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UsuarioSet] DROP CONSTRAINT [FK_CarritoUsuario];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CarritoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CarritoSet];
+GO
+IF OBJECT_ID(N'[dbo].[CategoriaSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CategoriaSet];
+GO
+IF OBJECT_ID(N'[dbo].[ProductoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductoSet];
+GO
+IF OBJECT_ID(N'[dbo].[UsuarioSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UsuarioSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

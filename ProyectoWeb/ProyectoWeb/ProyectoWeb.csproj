@@ -184,6 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelStoreV1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelStoreV11.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Producto.cs">
       <DependentUpon>ModelStoreV1.tt</DependentUpon>
     </Compile>
