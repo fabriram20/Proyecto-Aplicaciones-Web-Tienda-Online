@@ -216,6 +216,14 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
+<<<<<<< HEAD
+=======
+# SQL Server files
+#*.mdf
+#*.ldf
+#*.ndf
+
+>>>>>>> origin/master
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout

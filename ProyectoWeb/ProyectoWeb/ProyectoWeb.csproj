@@ -178,7 +178,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelStoreV1.Context.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\ModelStoreV1.cs" />
+=======
+    <Compile Include="Models\ModelStoreV1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
+>>>>>>> origin/master
     <Compile Include="Models\ModelStoreV1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,11 +214,17 @@
     <Content Include="Models\ModelStoreV1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelStoreV1.Context.cs</LastGenOutput>
+      <DependentUpon>ModelStoreV1.edmx</DependentUpon>
     </Content>
     <Content Include="Models\ModelStoreV1.edmx.sql" />
     <Content Include="Models\ModelStoreV1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+<<<<<<< HEAD
       <LastGenOutput>ModelStoreV11.cs</LastGenOutput>
+=======
+      <LastGenOutput>ModelStoreV1.cs</LastGenOutput>
+      <DependentUpon>ModelStoreV1.edmx</DependentUpon>
+>>>>>>> origin/master
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
