@@ -163,15 +163,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carrito.cs">
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Categoria.cs">
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelStoreV1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelStoreV1.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelStoreV1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelStoreV1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelStoreV1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Producto.cs">
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelStoreV1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -189,8 +206,14 @@
     <Content Include="Models\ModelStoreV1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelStoreV1.Context.cs</LastGenOutput>
+      <DependentUpon>ModelStoreV1.edmx</DependentUpon>
     </Content>
     <Content Include="Models\ModelStoreV1.edmx.sql" />
+    <Content Include="Models\ModelStoreV1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelStoreV1.cs</LastGenOutput>
+      <DependentUpon>ModelStoreV1.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
