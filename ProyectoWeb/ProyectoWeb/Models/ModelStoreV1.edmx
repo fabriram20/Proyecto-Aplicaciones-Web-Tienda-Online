@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelStoreV1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreV1StoreContainer">
+    <EntitySet Name="CarritoSet" EntityType="ModelStoreV1.Store.CarritoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriaSet" EntityType="ModelStoreV1.Store.CategoriaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductoSet" EntityType="ModelStoreV1.Store.ProductoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UsuarioSet" EntityType="ModelStoreV1.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoriaProducto" Association="ModelStoreV1.Store.CategoriaProducto">
+      <End Role="Categoria" EntitySet="CategoriaSet" />
+      <End Role="Producto" EntitySet="ProductoSet" />
+    </AssociationSet>
+    <AssociationSet Name="CarritoProducto" Association="ModelStoreV1.Store.CarritoProducto">
+      <End Role="Carrito" EntitySet="CarritoSet" />
+      <End Role="Producto" EntitySet="ProductoSet" />
+    </AssociationSet>
+    <AssociationSet Name="CarritoUsuario" Association="ModelStoreV1.Store.CarritoUsuario">
+      <End Role="Carrito" EntitySet="CarritoSet" />
+      <End Role="Usuario" EntitySet="UsuarioSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CarritoSet">
+    <Key>
+      <PropertyRef Name="IdCarrito" />
+    </Key>
+    <Property Name="IdCarrito" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriaSet">
+    <Key>
+      <PropertyRef Name="IdCategoria" />
+    </Key>
+    <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreCategoria" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductoSet">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreProducto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Foto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+    <Property Name="Categoria_IdCategoria" Type="int" Nullable="false" />
+    <Property Name="Carrito_IdCarrito" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UsuarioSet">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Carrito_IdCarrito" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="CategoriaProducto">
+    <End Role="Categoria" Type="ModelStoreV1.Store.CategoriaSet" Multiplicity="1" />
+    <End Role="Producto" Type="ModelStoreV1.Store.ProductoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="IdCategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Categoria_IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CarritoProducto">
+    <End Role="Carrito" Type="ModelStoreV1.Store.CarritoSet" Multiplicity="1" />
+    <End Role="Producto" Type="ModelStoreV1.Store.ProductoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="IdCarrito" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="Carrito_IdCarrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CarritoUsuario">
+    <End Role="Carrito" Type="ModelStoreV1.Store.CarritoSet" Multiplicity="1" />
+    <End Role="Usuario" Type="ModelStoreV1.Store.UsuarioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="IdCarrito" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Carrito_IdCarrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelStoreV1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelStoreV1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarritoSet" EntityType="ModelStoreV1.Carrito" />
+          <EntitySet Name="CategoriaSet" EntityType="ModelStoreV1.Categoria" />
+          <EntitySet Name="ProductoSet" EntityType="ModelStoreV1.Producto" />
+          <EntitySet Name="UsuarioSet" EntityType="ModelStoreV1.Usuario" />
+          <AssociationSet Name="CategoriaProducto" Association="ModelStoreV1.CategoriaProducto">
+            <End Role="Categoria" EntitySet="CategoriaSet" />
+            <End Role="Producto" EntitySet="ProductoSet" />
+          </AssociationSet>
+          <AssociationSet Name="CarritoProducto" Association="ModelStoreV1.CarritoProducto">
+            <End Role="Carrito" EntitySet="CarritoSet" />
+            <End Role="Producto" EntitySet="ProductoSet" />
+          </AssociationSet>
+          <AssociationSet Name="CarritoUsuario" Association="ModelStoreV1.CarritoUsuario">
+            <End Role="Carrito" EntitySet="CarritoSet" />
+            <End Role="Usuario" EntitySet="UsuarioSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Carrito">
+          <Key>
+            <PropertyRef Name="IdCarrito" />
+          </Key>
+          <Property Name="IdCarrito" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Producto" Relationship="ModelStoreV1.CarritoProducto" FromRole="Carrito" ToRole="Producto" />
+          <NavigationProperty Name="Usuario" Relationship="ModelStoreV1.CarritoUsuario" FromRole="Carrito" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCategoria" Type="String" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="ModelStoreV1.CategoriaProducto" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProducto" Type="String" Nullable="false" />
+          <Property Name="Foto" Type="String" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="ModelStoreV1.CategoriaProducto" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Carrito" Relationship="ModelStoreV1.CarritoProducto" FromRole="Producto" ToRole="Carrito" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" Nullable="false" />
+          <Property Name="Apellidos" Type="String" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Carrito" Relationship="ModelStoreV1.CarritoUsuario" FromRole="Usuario" ToRole="Carrito" />
+        </EntityType>
+        <Association Name="CategoriaProducto">
+          <End Type="ModelStoreV1.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="ModelStoreV1.Producto" Role="Producto" Multiplicity="*" />
+        </Association>
+        <Association Name="CarritoProducto">
+          <End Type="ModelStoreV1.Carrito" Role="Carrito" Multiplicity="1" />
+          <End Type="ModelStoreV1.Producto" Role="Producto" Multiplicity="*" />
+        </Association>
+        <Association Name="CarritoUsuario">
+          <End Type="ModelStoreV1.Carrito" Role="Carrito" Multiplicity="1" />
+          <End Type="ModelStoreV1.Usuario" Role="Usuario" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreV1StoreContainer" CdmEntityContainer="ModelStoreV1Container">
+    <EntitySetMapping Name="CarritoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStoreV1.Carrito)">
+        <MappingFragment StoreEntitySet="CarritoSet">
+          <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStoreV1.Categoria)">
+        <MappingFragment StoreEntitySet="CategoriaSet">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStoreV1.Producto)">
+        <MappingFragment StoreEntitySet="ProductoSet">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStoreV1.Usuario)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CategoriaProducto" TypeName="ModelStoreV1.CategoriaProducto" StoreEntitySet="ProductoSet">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="IdCategoria" ColumnName="Categoria_IdCategoria" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CarritoProducto" TypeName="ModelStoreV1.CarritoProducto" StoreEntitySet="ProductoSet">
+      <EndProperty Name="Carrito">
+        <ScalarProperty Name="IdCarrito" ColumnName="Carrito_IdCarrito" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CarritoUsuario" TypeName="ModelStoreV1.CarritoUsuario" StoreEntitySet="UsuarioSet">
+      <EndProperty Name="Carrito">
+        <ScalarProperty Name="IdCarrito" ColumnName="Carrito_IdCarrito" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
