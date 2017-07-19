@@ -1,0 +1,7 @@
+﻿@model IEnumerable<ProyectoWeb.Models.Categoria>
+<ul class="nav navbar-nav navbar-left">
+        @foreach (var item in Model)
+        {
+            <li>@Html.ActionLink(item.NombreCategoria, "Index", "Home")</li>
+        }
+</ul>
