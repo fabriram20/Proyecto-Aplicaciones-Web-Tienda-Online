@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreStoreContainer" CdmEntityContainer="ModelStoreContainer">
+    <EntitySetMapping Name="CategoriaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStore.Categoria)">
+        <MappingFragment StoreEntitySet="CategoriaSet">
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+          <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CarritoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStore.Carrito)">
+        <MappingFragment StoreEntitySet="CarritoSet">
+          <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStore.Usuario)">
+        <MappingFragment StoreEntitySet="UsuarioSet">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelStore.Producto)">
+        <MappingFragment StoreEntitySet="ProductoSet">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CategoriaProducto" TypeName="ModelStore.CategoriaProducto" StoreEntitySet="ProductoSet">
+      <EndProperty Name="Categoria">
+        <ScalarProperty Name="IdCategoria" ColumnName="Categoria_IdCategoria" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CarritoUsuario" TypeName="ModelStore.CarritoUsuario" StoreEntitySet="CarritoSet">
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="IdUsuario" ColumnName="Usuario_IdUsuario" />
+      </EndProperty>
+      <EndProperty Name="Carrito">
+        <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CarritoProducto" TypeName="ModelStore.CarritoProducto" StoreEntitySet="ProductoSet">
+      <EndProperty Name="Carrito">
+        <ScalarProperty Name="IdCarrito" ColumnName="Carrito_IdCarrito" />
+      </EndProperty>
+      <EndProperty Name="Producto">
+        <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
