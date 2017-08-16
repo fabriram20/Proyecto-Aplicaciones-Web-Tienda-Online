@@ -9,7 +9,7 @@ namespace WEBAPP.Controllers
 {
     public class PartialController : Controller
     {
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CategoriaList()
         {
             ModelStoreContainer CL = new ModelStoreContainer();
