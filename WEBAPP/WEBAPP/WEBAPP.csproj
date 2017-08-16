@@ -329,7 +329,6 @@
     <Content Include="Views\Carrito\Delete.cshtml" />
     <Content Include="Views\Carrito\Details.cshtml" />
     <Content Include="Views\Carrito\Edit.cshtml" />
-    <Content Include="Views\Carrito\Index.cshtml" />
     <Content Include="Views\Categoria\Create.cshtml" />
     <Content Include="Views\Categoria\Delete.cshtml" />
     <Content Include="Views\Categoria\Details.cshtml" />
@@ -346,6 +345,7 @@
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Producto\Categoria.cshtml" />
+    <Content Include="Views\Carrito\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

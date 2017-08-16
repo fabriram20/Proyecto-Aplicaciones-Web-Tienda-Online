@@ -75,7 +75,11 @@ else
                             <h4>@Html.DisplayFor(modelItem => item.Precio)</h4>
                         </td>
                         <td>
-                            <a class="btn btn-block btn-warning">Añadir al carrito</a>
+                            @using (Html.BeginForm("Agregar", "Carrito", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                <input type="hidden" name="idProducto" value="@item.IdProducto" />
+                                <button type="submit" class="btn btn-block btn-warning">Añadir al carrito</button>
+                            }         
                         </td>
                         <!--
                         <td>

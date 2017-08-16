@@ -1,8 +1,7 @@
-﻿@model IEnumerable<WEBAPP.Carrito>
+﻿@model IEnumerable<WEBAPP.Producto>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Carrito";
 }
 
 <h2>Index</h2>
@@ -12,15 +11,33 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Precio)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCarrito }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCarrito }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCarrito })
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Foto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdProducto }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdProducto }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdProducto })
         </td>
     </tr>
 }

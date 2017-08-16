@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -15,9 +16,11 @@ namespace WEBAPP.Controllers
         private ModelStoreContainer db = new ModelStoreContainer();
 
         // GET: Carrito
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.CarritoSet.ToList());
+            var userId = User.Identity.GetUserId();
+            return View(db.CarritoSet.Find(userId).Producto.ToList());
         }
 
         // GET: Carrito/Details/5
@@ -111,6 +114,20 @@ namespace WEBAPP.Controllers
         {
             Carrito carrito = db.CarritoSet.Find(id);
             db.CarritoSet.Remove(carrito);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Carrito/Agregar/5
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Agregar(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var carrito = db.CarritoSet.Find(userId);
+            var producto = db.ProductoSet.Find(id);
+            carrito.Producto.Add(producto);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
