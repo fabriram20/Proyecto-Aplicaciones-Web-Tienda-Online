@@ -245,6 +245,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\marcas.jpg" />
     <Content Include="ModelStore.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelStore.Context.cs</LastGenOutput>
@@ -336,9 +337,7 @@
     <Content Include="Views\Producto\Index.cshtml" />
     <Content Include="Views\Producto\Categoria.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

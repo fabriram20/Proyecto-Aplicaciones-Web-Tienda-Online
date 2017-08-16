@@ -6,7 +6,19 @@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
+
+    <div class="col-md-1">
+    </div>
+
+    <div class="col-md-5 container-fluid">
+        <div class="text-center">
+            <img src="../images/marcas.jpg" class="img-responsive center-block" align="middle"
+                 alt="Responsive Marcas" style="max-width: 100%; height: auto; display: block;">
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -51,11 +63,13 @@
             }
         </section>
     </div>
+    <!--Login con otros serivicio
     <div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
+        -->
 </div>
 
 @section Scripts {
