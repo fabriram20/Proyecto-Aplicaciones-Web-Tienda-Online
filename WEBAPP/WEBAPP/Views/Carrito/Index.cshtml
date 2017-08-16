@@ -2,10 +2,12 @@
 
 @{
     ViewBag.Title = "Carrito";
+
 }
 
 @{ 
     Double total = 0.0;
+    
 }
 <!--
 <h2>Index</h2>
@@ -55,8 +57,8 @@
         <div class="col-sm-2">
             <div class="well clearfix" >
                 <b>Datos del cliente:</b><br>
-                <b>Nombres: </b>{{cliente.nombres}}<br>
-                <b>Apellidos: </b>{{cliente.apellidos}}<br>
+                <b>Nombres: </b>--<br>
+                <b>Apellidos: </b>--<br>
             </div>
             <img src="../images/bannerFormasPago.png" class="img-responsive center-block"
                  alt="Responsive banner" style="max-width: 100%; height: auto; display: block;">
@@ -68,7 +70,7 @@
                 <h1>Carrito de Compras</h1>
 
                 <!--Listar Producto-->
-               @if (!Model.Any())
+               @if (Model.Any())
                {
 
                 <table class="table table-responsive table-striped center" style="text-align:center;">
