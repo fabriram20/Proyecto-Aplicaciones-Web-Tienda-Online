@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using WEBAPP;
 
-namespace ProyectoWeb.Controllers
+namespace WEBAPP.Controllers
 {
     public class PartialController : Controller
     {
-        [HttpGet]
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
         public ActionResult CategoriaList()
         {
             ModelStoreContainer CL = new ModelStoreContainer();
