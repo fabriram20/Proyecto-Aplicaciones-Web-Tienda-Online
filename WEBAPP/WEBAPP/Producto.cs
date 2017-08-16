@@ -14,12 +14,19 @@ namespace WEBAPP
     
     public partial class Producto
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Producto()
+        {
+            this.Carrito = new HashSet<Carrito>();
+        }
+    
         public int IdProducto { get; set; }
         public string NombreProducto { get; set; }
         public string Foto { get; set; }
         public double Precio { get; set; }
     
-        public virtual Carrito Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Carrito> Carrito { get; set; }
         public virtual Categoria Categoria { get; set; }
     }
 }

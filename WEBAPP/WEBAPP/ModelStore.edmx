@@ -10,13 +10,18 @@
     <EntitySet Name="UsuarioSet" EntityType="ModelStore.Store.UsuarioSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CategoriaSet" EntityType="ModelStore.Store.CategoriaSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProductoSet" EntityType="ModelStore.Store.ProductoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CarritoProducto" EntityType="ModelStore.Store.CarritoProducto" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CarritoUsuario" Association="ModelStore.Store.CarritoUsuario">
       <End Role="Carrito" EntitySet="CarritoSet" />
       <End Role="Usuario" EntitySet="UsuarioSet" />
     </AssociationSet>
-    <AssociationSet Name="CarritoProducto" Association="ModelStore.Store.CarritoProducto">
+    <AssociationSet Name="FK_CarritoProducto_Carrito" Association="ModelStore.Store.FK_CarritoProducto_Carrito">
       <End Role="Carrito" EntitySet="CarritoSet" />
+      <End Role="CarritoProducto" EntitySet="CarritoProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarritoProducto_Producto" Association="ModelStore.Store.FK_CarritoProducto_Producto">
       <End Role="Producto" EntitySet="ProductoSet" />
+      <End Role="CarritoProducto" EntitySet="CarritoProducto" />
     </AssociationSet>
     <AssociationSet Name="CategoriaProducto" Association="ModelStore.Store.CategoriaProducto">
       <End Role="Categoria" EntitySet="CategoriaSet" />
@@ -55,8 +60,15 @@
     <Property Name="NombreProducto" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Foto" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Precio" Type="float" Nullable="false" />
-    <Property Name="Carrito_IdCarrito" Type="int" Nullable="false" />
     <Property Name="Categoria_IdCategoria" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CarritoProducto">
+    <Key>
+      <PropertyRef Name="Carrito_IdCarrito" />
+      <PropertyRef Name="Producto_IdProducto" />
+    </Key>
+    <Property Name="Carrito_IdCarrito" Type="int" Nullable="false" />
+    <Property Name="Producto_IdProducto" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="CarritoUsuario">
     <End Role="Carrito" Type="ModelStore.Store.CarritoSet" Multiplicity="*" />
@@ -70,18 +82,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CarritoProducto">
-    <End Role="Carrito" Type="ModelStore.Store.CarritoSet" Multiplicity="1" />
-    <End Role="Producto" Type="ModelStore.Store.ProductoSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Carrito">
-        <PropertyRef Name="IdCarrito" />
-      </Principal>
-      <Dependent Role="Producto">
-        <PropertyRef Name="Carrito_IdCarrito" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="CategoriaProducto">
     <End Role="Categoria" Type="ModelStore.Store.CategoriaSet" Multiplicity="1" />
     <End Role="Producto" Type="ModelStore.Store.ProductoSet" Multiplicity="*" />
@@ -91,6 +91,30 @@
       </Principal>
       <Dependent Role="Producto">
         <PropertyRef Name="Categoria_IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarritoProducto_Carrito">
+    <End Role="Carrito" Type="ModelStore.Store.CarritoSet" Multiplicity="1" />
+    <End Role="CarritoProducto" Type="ModelStore.Store.CarritoProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrito">
+        <PropertyRef Name="IdCarrito" />
+      </Principal>
+      <Dependent Role="CarritoProducto">
+        <PropertyRef Name="Carrito_IdCarrito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarritoProducto_Producto">
+    <End Role="CarritoProducto" Type="ModelStore.Store.CarritoProducto" Multiplicity="*" />
+    <End Role="Producto" Type="ModelStore.Store.ProductoSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="CarritoProducto">
+        <PropertyRef Name="Producto_IdProducto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -159,7 +183,7 @@
           <End Type="ModelStore.Usuario" Role="Usuario" Multiplicity="1" />
         </Association>
         <Association Name="CarritoProducto">
-          <End Type="ModelStore.Carrito" Role="Carrito" Multiplicity="1" />
+          <End Type="ModelStore.Carrito" Role="Carrito" Multiplicity="*" />
           <End Type="ModelStore.Producto" Role="Producto" Multiplicity="*" />
         </Association>
         <Association Name="CategoriaProducto">
@@ -216,12 +240,12 @@
         <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CarritoProducto" TypeName="ModelStore.CarritoProducto" StoreEntitySet="ProductoSet">
+    <AssociationSetMapping Name="CarritoProducto" TypeName="ModelStore.CarritoProducto" StoreEntitySet="CarritoProducto">
       <EndProperty Name="Carrito">
         <ScalarProperty Name="IdCarrito" ColumnName="Carrito_IdCarrito" />
       </EndProperty>
       <EndProperty Name="Producto">
-        <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+        <ScalarProperty Name="IdProducto" ColumnName="Producto_IdProducto" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="CategoriaProducto" TypeName="ModelStore.CategoriaProducto" StoreEntitySet="ProductoSet">

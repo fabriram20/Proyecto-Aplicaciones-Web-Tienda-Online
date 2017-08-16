@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'D:\POLITECNICA\SEPTIMO SEMESTRE\PROGRAMACION WEB\Proyecto-Aplicaciones-Web-Tienda-Online\WEBAPP\WEBAPP\ModelStore.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'E:\Proyectos\Aplicaciones Web\Proyecto-Aplicaciones-Web-Tienda-Online\WEBAPP\WEBAPP\ModelStore.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

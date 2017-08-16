@@ -14,10 +14,17 @@ namespace WEBAPP
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Categoria",
+                url: "Producto/Categoria/{categoria}",
+                defaults: new { controller = "Producto", action = "Index", categoria = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

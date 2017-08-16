@@ -23,12 +23,7 @@ namespace WEBAPP.Controllers
         // GET: Producto/Categoria/Hombres
         public ActionResult Categoria(String categoria)
         {
-            var cat = (from q in db.CategoriaSet
-                       where categoria == q.NombreCategoria
-                       select q).FirstOrDefault();
-            var prod = (from q in db.ProductoSet
-                        where cat == q.Categoria
-                        select q);
+            var prod = db.ProductoSet.Include(p => p.Categoria).Where(p => p.Categoria.NombreCategoria.ToLower() == categoria.ToLower()).ToList();
             return View(prod);
         }
 
