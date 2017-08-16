@@ -19,8 +19,8 @@ namespace WEBAPP.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            return View(db.CarritoSet.Find(userId).Producto.ToList());
+            var userId = User.Identity.Name;
+            return View(db.CarritoSet.Include(c => c.Usuario).FirstOrDefault(c => c.Usuario.Correo == userId).Producto.ToList());
         }
 
         // GET: Carrito/Details/5
@@ -124,8 +124,8 @@ namespace WEBAPP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Agregar(int id)
         {
-            var userId = User.Identity.GetUserId();
-            var carrito = db.CarritoSet.Find(userId);
+            var userId = User.Identity.Name;
+            var carrito = db.CarritoSet.Include(c => c.Usuario).Where(c => c.Usuario.Correo == userId).FirstOrDefault();
             var producto = db.ProductoSet.Find(id);
             carrito.Producto.Add(producto);
             db.SaveChanges();

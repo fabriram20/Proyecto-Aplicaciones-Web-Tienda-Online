@@ -163,15 +163,17 @@ namespace WEBAPP.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    ModelStoreContainer db = new ModelStoreContainer();
-                    var carrito = new Carrito();
                     var usuario = new Usuario();
+                    usuario.Nombre = "n/a";
+                    usuario.Apellido = "n/a";
+                    usuario.Password = "n/a";
                     usuario.Correo = model.Email;
-                    usuario.Carrito = carrito;
-                    carrito.Usuario = usuario;
-                    db.CarritoSet.Add(carrito);
-                    db.UsuarioSet.Add(usuario);
-                    db.SaveChanges();
+                    usuario.Carrito = new Carrito();
+                    using (var db = new ModelStoreContainer())
+                    {
+                        db.UsuarioSet.Add(usuario);
+                        db.SaveChanges();
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
