@@ -4,6 +4,9 @@
     ViewBag.Title = "Carrito";
 }
 
+@{ 
+    Double total = 0.0;
+}
 <!--
 <h2>Index</h2>
 
@@ -65,6 +68,8 @@
                 <h1>Carrito de Compras</h1>
 
                 <!--Listar Producto-->
+               @if (!Model.Any())
+               {
 
                 <table class="table table-responsive table-striped center" style="text-align:center;">
                     <tr>
@@ -76,15 +81,17 @@
 
                     @foreach (var item in Model)
                     {
+                        total += item.Precio;
+
                         <tr>
                             <td>
-                                <img src="../images/blank.jpg" style="height: 150px; width: 150px;" alt="Responsive image" class="img-thumbnail">
+                                <img src="../images/@Html.DisplayFor(modelItem => item.Foto)" style="height: 150px; width: 150px;" alt="Responsive image" class="img-thumbnail">
                             </td>
                             <td>
-                                <h4>nombre producto</h4>
+                                <h4>@Html.DisplayFor(modelItem => item.NombreProducto)</h4>
                             </td>
                             <td>
-                                <h4>precio</h4>
+                                <h4>@Html.DisplayFor(modelItem => item.Precio)</h4>
                             </td>
                             <td><a class="btn btn-warning">Quitar del carrito</a></td>
                         </tr>
@@ -93,10 +100,14 @@
                     <tr>
                         <td></td>
                         <td><h4><b>TOTAL:</b></h4></td>
-                        <td><h4>{{total}}</h4></td>
+                        <td><h4>@total</h4></td>
                         <td><a class="btn btn-success">Check Out</a></td>
                     </tr>
                 </table>
+
+               }
+               else
+               {
                 <!--Su carrito esta vacio-->
                 <div [hidden]="!hidden.carritoVacio">
                     <div class="jumbotron text-center">
@@ -106,6 +117,7 @@
                     </div>
                 </div>
             </div>
+               }
             <!--No ha iniciado sesion
             <div [hidden]="hidden.sesionIniciada">
                 <div class="jumbotron text-center">
@@ -116,6 +128,7 @@
             </div>
                 -->
         </div>
+
 
         <!--Ofertas y publciidad-->
         <div class="col-sm-2">
