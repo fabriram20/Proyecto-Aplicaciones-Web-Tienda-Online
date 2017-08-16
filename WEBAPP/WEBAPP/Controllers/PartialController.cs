@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WEBAPP;
 
-namespace ProyectoWeb.Controllers
+namespace WEBAPP.Controllers
 {
     public class PartialController : Controller
     {
