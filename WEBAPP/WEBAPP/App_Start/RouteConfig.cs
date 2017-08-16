@@ -16,7 +16,7 @@ namespace WEBAPP
             routes.MapRoute(
                 name: "Categoria",
                 url: "Producto/Categoria/{categoria}",
-                defaults: new { controller = "Producto", action = "Index", categoria = UrlParameter.Optional }
+                defaults: new { controller = "Producto", action = "Categoria", categoria = UrlParameter.Optional }
             );
 
             routes.MapRoute(

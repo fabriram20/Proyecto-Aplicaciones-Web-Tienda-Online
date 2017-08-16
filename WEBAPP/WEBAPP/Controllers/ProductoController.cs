@@ -20,7 +20,7 @@ namespace WEBAPP.Controllers
             return View(db.ProductoSet.ToList());
         }
 
-        // GET: Producto/Categoria/Hombres
+        // GET: Producto/Categoria/Hombre
         public ActionResult Categoria(String categoria)
         {
             var prod = db.ProductoSet.Include(p => p.Categoria).Where(p => p.Categoria.NombreCategoria.ToLower() == categoria.ToLower()).ToList();

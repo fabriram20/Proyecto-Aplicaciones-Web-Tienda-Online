@@ -2,6 +2,6 @@
 <ul class="nav navbar-nav navbar-left">
         @foreach (var item in Model)
         {
-            <li>@Html.ActionLink(item.NombreCategoria, "Index", "Home")</li>
+            <li>@Html.ActionLink(item.NombreCategoria, "Categoria", "Producto", new {categoria = item.NombreCategoria},null)</li>
         }
 </ul>
