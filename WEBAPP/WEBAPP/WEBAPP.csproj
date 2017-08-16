@@ -334,6 +334,7 @@
     <Content Include="Views\Producto\Details.cshtml" />
     <Content Include="Views\Producto\Edit.cshtml" />
     <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Categoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />

@@ -20,6 +20,18 @@ namespace WEBAPP.Controllers
             return View(db.ProductoSet.ToList());
         }
 
+        // GET: Producto/Categoria/Hombres
+        public ActionResult Categoria(String categoria)
+        {
+            var cat = (from q in db.CategoriaSet
+                       where categoria == q.NombreCategoria
+                       select q).FirstOrDefault();
+            var prod = (from q in db.ProductoSet
+                        where cat == q.Categoria
+                        select q);
+            return View(prod);
+        }
+
         // GET: Producto/Details/5
         public ActionResult Details(int? id)
         {
